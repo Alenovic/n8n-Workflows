@@ -1,0 +1,296 @@
+{
+  "name": "Generate Google Doc Proposal",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a helpful, intelligent proposal writer.",
+              "role": "system"
+            },
+            {
+              "content": "=I'm an automation specialist applying to jobs on freelance platforms.\n\nYour task is to take as input an Upwork job description and return as output JSON for a customized proposal (which I'll upload to Google Docs).\n\nHigh-performing proposals are typically templated as follows:\n\n```\n# {titleOfSystem} \n## {briefExplanationOfSystem}\n\nHi. As mentioned, I’m so confident I’m the right fit for this I went ahead and created a proposal for you, including a step-by-step of how I’d do it.\n\nI’ve done the below many times and working with {specificPartOfTheirRequest} is actually one of my favorite things to do. Talk about serendipity!\n\nAnyway, here’s how we'll build {paraphrasedSystem}:\n{stepByStepBulletPoints}\n\nSo basically, {leftToRightFlowWithArrows}.\n\nA little about me:\n{aboutMeBulletPoints}\n\nTo be upfront: my goal is to work with you on a long-term retainer, since I find it aligns incentives and lets me help clients better. So I'd treat everything we do together as foundational, and help you build systems that drive revenue/maximize cost savings. \n\nI am really confident I can blow this out of the park for you, so if this sounds like something you're into, just respond to my proposal on Upwork & we'll take it from there. \n\nThank you for your time!\n```\n\nOutput your results in JSON using this format:\n\n{\n  \"titleOfSystem\": \"\",\n  \"briefExplanationOfSystem\": \"\",\n  \"specificPartOfTheirRequest\": \"\",\n  \"stepByStepBulletPoints\": \"\",\n  \"leftToRightFlowWithArrows\": \"\",\n  \"aboutMeBulletPoints\": \"\",\n}\n\nRules:\n- Write in a casual, spartan tone of voice.\n- Don't use emojis or flowery language.\n- If there's a name included somewhere in the description, add it for personalization purposes.\n- Return \"stepByStepBulletPoints\" and \"aboutMeBulletPoints\" as strings, and delimit each bullet point with a \\n and make sure it includes a -\n- In \"aboutMeBulletPoints\", prefer to mention social proof that includes $ and numbers.\n- For \"leftToRightFlowWithArrows\", write a simplified left to right flow delimited by \"->\" strings. For instance, we receive a new email -> we add that to the CRM -> we send an email to the new lead.\n- Use first-person \"I\" language, like \"I'd streamline...\" for bullet points etc.\n\n\nSome facts about me for the personalization: {{ $json.aboutMe }}\n"
+            },
+            {
+              "content": "={\"jobDescription\":\"{{ $('Execute Workflow Trigger').item.json.query }}\"}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        100,
+        20
+      ],
+      "id": "e3de382c-e3e8-4803-b880-3bf7b1882797",
+      "name": "OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "STODRm71HyYOPLCv",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e980c92c-07d9-400e-b40c-a8fbdbe8bbcb",
+              "name": "aboutMe",
+              "value": "I'm an AI and automation freelancer who builds outreach systems, CRM systems, project management systems, no-code systems, and integrations- Some notable things I've done:- End-to-end project management for a $1M/year copywriting agency- Outbound acquisition system that grew a content company from $10K/mo to $92K/mo in 12 mo - GDPR Compliant automations for several small and medium sized companies in Germany and Austria, generating them a lot of money, ressources and time.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -100,
+        20
+      ],
+      "id": "307d441b-656a-40ca-9da4-6413abc063f9",
+      "name": "Set Variable1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "74b2ef09-da1d-4fe0-b6ea-242f25edf5e8",
+              "name": "urlOfProposal",
+              "value": "=https://docs.google.com/document/d/{{ $json.documentId }}/edit",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1140,
+        20
+      ],
+      "id": "ca7118e5-f2d5-4a16-8d56-caec225e0356",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        20
+      ],
+      "id": "47103a92-5fdf-4848-8019-b0010604c1af",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "1rUO3VaO2yDGO5wf0Zz72gaG7e__wjXY26PJkX8h-Y00",
+          "mode": "list",
+          "cachedResultName": "Google Docs Upwork Proposal Template",
+          "cachedResultUrl": "https://docs.google.com/document/d/1rUO3VaO2yDGO5wf0Zz72gaG7e__wjXY26PJkX8h-Y00/edit?usp=drivesdk"
+        },
+        "name": "={{ $json.message.content.titleOfSystem }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        480,
+        20
+      ],
+      "id": "41cb41de-ce1c-41cf-84c7-375cf7aa5f1c",
+      "name": "Copy file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7hsWP4cJwGJioJQF",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        700,
+        20
+      ],
+      "id": "44bb04db-7d4d-4506-958a-408eb57703d0",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7hsWP4cJwGJioJQF",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $('Copy file').item.json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "replaceAll",
+              "text": "{{titleOfSystem}}",
+              "replaceText": "={{ $('OpenAI1').item.json.message.content.titleOfSystem }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{briefExplanationOfSystem}}",
+              "replaceText": "={{ $('OpenAI1').item.json.message.content.briefExplanationOfSystem }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{specificPartOfTheirRequest}}",
+              "replaceText": "={{ $('OpenAI1').item.json.message.content.specificPartOfTheirRequest }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{stepByStepBulletPoints}}",
+              "replaceText": "={{ $('OpenAI1').item.json.message.content.stepByStepBulletPoints }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{leftToRightFlowWithArrows}}",
+              "replaceText": "={{ $('OpenAI1').item.json.message.content.leftToRightFlowWithArrows }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{aboutMeBulletPoints}}",
+              "replaceText": "={{ $('OpenAI1').item.json.message.content.aboutMeBulletPoints }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        920,
+        20
+      ],
+      "id": "b7021cbe-5f58-4f7f-bcda-996b46982ab5",
+      "name": "Update a document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "nfFDcw1AU1dj9E6X",
+          "name": "Google Docs account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI1": {
+      "main": [
+        [
+          {
+            "node": "Copy file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variable1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Variable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy file": {
+      "main": [
+        [
+          {
+            "node": "Share file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share file": {
+      "main": [
+        [
+          {
+            "node": "Update a document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a document": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "94243f9c-4021-44f0-93f7-06b47e939f2b",
+  "meta": {
+    "instanceId": "bec8c5cfd29a9d39ababc02e1ffc6edaf3adddc7839c2be8ad7a51ea44d5658f"
+  },
+  "id": "htC5t54nYvI6Fl9G",
+  "tags": []
+}

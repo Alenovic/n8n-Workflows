@@ -1,0 +1,115 @@
+{
+  "name": "Generate Mermaid.js",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a helpful, intelligent Mermaid.js code writer.",
+              "role": "system"
+            },
+            {
+              "content": "=Your task is to take as input an Upwork job description and return as output a Mermaid diagram that I can visualize using a subsequent Mermaid.js tool.\n\nOutput your results in plaintext using Mermaid code formatting. Don't output anything but the Mermaid diagram code.\n\nHere's an example of what your output should look like:\n\ngraph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;\n\nRules:\n- You only output flowcharts. Nothing else. No sequence diagrams, no Gantt charts—only flowcharts.\n- Do not output any accessory formatting information, like ```mermaid.\n- Your first character should be g."
+            },
+            {
+              "content": "={{ $json.query }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1e0f8154-205c-44f8-b9b9-441fa51cc8c1",
+      "name": "OpenAI2",
+      "credentials": {
+        "openAiApi": {
+          "id": "STODRm71HyYOPLCv",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d47590b5-3683-4afe-bc27-a25fb94a32d5",
+              "name": "mermaidCode",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        0
+      ],
+      "id": "c9d2f485-f164-43d6-a3d9-e99648bb7119",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        0
+      ],
+      "id": "c7d71bfe-f352-4adb-a0e9-deb2a188e339",
+      "name": "Execute Workflow Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenAI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1ab273d4-1e05-4a27-adfd-08aa43cf2478",
+  "meta": {
+    "instanceId": "bec8c5cfd29a9d39ababc02e1ffc6edaf3adddc7839c2be8ad7a51ea44d5658f"
+  },
+  "id": "9JmgeHDMIEsNlKD9",
+  "tags": []
+}
