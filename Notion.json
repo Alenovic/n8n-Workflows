@@ -1,0 +1,138 @@
+{
+  "name": "Notion",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "event": "pagedUpdatedInDatabase",
+        "databaseId": {
+          "__rl": true,
+          "value": "233605d3-61a0-80bb-860f-c9682974a914",
+          "mode": "list",
+          "cachedResultName": "Vertriebs-CRM",
+          "cachedResultUrl": "https://www.notion.so/233605d361a080bb860fc9682974a914"
+        }
+      },
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a427f5ee-72df-4f85-b604-4e2f3e5307d1",
+      "name": "Notion Trigger",
+      "credentials": {
+        "notionApi": {
+          "id": "5t5WvsSDehcQKJTS",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['E-Mail'] }}",
+        "subject": "={{ $json.Coaching }}",
+        "emailType": "text",
+        "message": "=Hallo {{ $json.Name }},\n\ndanke das du dich für das coaching entschieden hast.\n\nUnter folgendem Link findest du alle onboarding Dokumente : {{ $json.LINK }}\n\nDanke und liebe Grüße\nAlen",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "13a4f2bf-e1ab-4ac6-beb8-3252817bd8cb",
+      "name": "Send a message",
+      "webhookId": "71e3c995-4fd8-4e8e-8d98-b6760304f621",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "I0qOStbOy4kjVAeB",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Notion Trigger').item.json.Name }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1QO0I7JKHHEqGLzfCfRGT8WIJhEUdKzBE",
+          "mode": "list",
+          "cachedResultName": "Coaching",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1QO0I7JKHHEqGLzfCfRGT8WIJhEUdKzBE"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        440,
+        0
+      ],
+      "id": "dd075691-d3ac-4264-a602-8044443d467c",
+      "name": "Create folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7hsWP4cJwGJioJQF",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Notion Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Create folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create folder": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e87d5304-79fc-4a61-8384-3955605d3b4b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bec8c5cfd29a9d39ababc02e1ffc6edaf3adddc7839c2be8ad7a51ea44d5658f"
+  },
+  "id": "8V5ebzwrSu2q6S74",
+  "tags": []
+}
