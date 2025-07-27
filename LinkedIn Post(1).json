@@ -1,0 +1,461 @@
+{
+  "name": "LinkedIn Post",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Erstellen Sie Materialien für meinen nächsten LinkedIn-Beitrag.\n\nHier sind die Ideen, die wir bereits verwendet haben: {{ $json.mergedText }}.\n\nKreiere etwas auf Basis der bisherigen Ideen oder kombiniere sie clever.\n- Idee\n- Titel\n- Text\n- Bildbeschreibung\n\nVerwenden Sie keine dieser Ideen erneut. Entwickeln Sie eine komplett neue, die inhaltlich und sprachlich klar unterscheidbar ist. Vermeiden Sie jegliche Wiederholung von Struktur, Beispiel oder Formulierung aus der Liste oben.\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=#ROLLE: \n\nDu bist ein Experte für die Erstellung viraler LinkedIn-Beiträge mit 10 Jahren Erfahrung. Sie haben virale Beiträge erstellt, die insgesamt 10 Milliarden Aufrufe erzielt haben.\n\n#ZIEL: \n\nDeine Aufgabe ist es, 1) einen Namen, 2) eine Idee, 3) einen Titel, 4) einen Text und 5) eine Bildbeschreibung für meinen nächsten LinkedIn-Beitrag zu verfassen. Diese sollten für meine Zielgruppe von großem Wert sein.\n\n#SZENARIO:\n\nIch betreibe einen LinkedIn-Blog über meine KI Agentur \"SocialPrompt\", welche sich darauf spezialisiert repetetive Aufgaben in KMU´s zu automatisieren und so Zeit, Geld und Ressourcen für die Firmen zu sparen.Meine Zielgruppe sind Marketingfachleute, Vertriebsmitarbeiter, Gründer, B2B-Unternehmer, B2C-Unternehmer, Marken, sowie Kleine- und Mittelständische Unternehmen. Mein Ziel ist es, Ihnen mit wertvollen Automationen viel Zeit, Geld und Ressourcen einzusparen, sowie die Skalierung des Unternehmens zu ermöglichen. \n\n##INHALTSPOOL:\n\n1. Zeitlose Prinzipien der Automatisierung und KI\nInspiration aus prägenden Büchern, Frameworks und Denkmodellen – aber angewendet auf KI und Automatisierung.\nBeispiele:\n* Was wir von Toyota’s Lean-Prinzipien für heutige KI-Automationen lernen können\n* Zeitlose Automatisierungsprinzipien aus „The Goal“ oder „Work the System“\n* Cialdinis Überzeugungsprinzipien im Kontext automatisierter Kundenkommunikation\n\n2. Fallstudien: KI-Automation in der Praxis\nTiefe Einblicke in reale Use Cases – wie Unternehmen durch KI und Automatisierung Effizienz und Wachstum erreicht haben.\nBeispiele:\n* Wie ein E-Commerce mit KI-Angebots-E-Mails 40 % Conversion-Steigerung erzielte\n* Fallstudie: Wie ein lokales Unternehmen 20+ Stunden manuelle Arbeit pro Woche durch GPT automatisierte\n* Zerlegung einer erfolgreichen Automatisierungs-Kampagne Schritt für Schritt\n\n3. Aktuelle Growth Hacks & Tools mit KI\nTopaktuelle Taktiken, Hacks und Tools, die jetzt funktionieren – mit Fokus auf KI-gestützte Prozesse.\nBeispiele:\n* Wie man mit einem GPT-Agenten Leads vorqualifiziert – automatisch\n* Frischer Hack: Automatisiertes Content-Clustering für SEO mit KI\n* Tools der Woche: 3 Chrome-Extensions, die deinen Alltag mit AI automatisieren\n\n4. Kontroverse KI-Automationen & ethische Fragen\nPolarisierende Themen, die Diskussionen auslösen – z. B. ethische Dilemmata, gefährliche Automationen oder besonders gewagte KI-Einsätze.\nBeispiele:\n* Sollte man Bewerbungen mit GPT schreiben lassen?\n* Kontroverse: Kündigungen durch KI-getriebene Performance-Auswertung\n* KI ersetzt Kundenservice – gut oder gefährlich?\nJeden Post, welchen ich poste, konzentriert sich ausschließlich auf einen der Inhaltsbereiche. Das macht meine Inhalte vielfältiger und deckt mehr coole Themen ab.\n\n\n#ERWARTUNG: \n\nSchreiben Sie mir 1) Name (kurzer Name für den Beitrag, weniger als 50 Zeichen), 2) Idee (detaillierte Beschreibung in maximal 3 Sätzen), 3) Titel (der erste Satz des Beitrags, weniger als 80 Zeichen, sollte extrem fesselnd sein), 4) vollständigen Text des Beitrags, 5) Bildbeschreibung (das Bild ist das Erste, was die Leute sehen, also gestalten Sie es extrem fesselnd; schreiben Sie die Bildbeschreibung so klar und einfach wie möglich, damit der KI-Bildgenerator genau weiß, was er generieren soll; das Bild sollte minimalistisch sein) für einen LinkedIn-Beitrag mit 200 bis 300 Wörtern aus einem der oben beschriebenen Inhaltsbereiche.\nAchten Sie darauf, dass Sie einen guten Aufhänger, eine gute Bindung und eine Belohnung am Ende haben.\nDer Beitrag sollte eindeutig zu einer Marketing-/Vertriebserkenntnis führen.\nIhre Ausgabe sollte im JSON-Format vorliegen.\nDie Idee sollte immer mit einer Kategorie beginnen: Zeitlose Prinzipien der Automatisierung und KI, Fallstudien: KI-Automation in der Praxis, Aktuelle Growth Hacks & Tools mit KI, Kontroverse KI-Automationen & ethische Fragen.\n\n#Beispiel-Output:\n\n{\n  \"name\": \"Automatisierte Lead-Qualifizierung mit GPT\",\n  \"idea\": \"Fallstudie: Ein mittelständisches B2B-Unternehmen sparte über 20 Stunden pro Woche, indem es den Prozess der Lead-Qualifizierung mit einem GPT-basierten Chat-Agenten automatisierte. Anstatt eingehende Leads manuell zu prüfen, übernahm ein maßgeschneiderter KI-Agent den Erstkontakt, sammelte Schlüsselinformationen und bewertete die Leads in Echtzeit – nur vielversprechende wurden an den Vertrieb weitergegeben. Das Ergebnis: weniger Aufwand und 18 % höhere Conversion-Rate innerhalb des ersten Monats.\",\n  \"title\": \"Wie ein B2B-Unternehmen mit GPT über 20 Stunden pro Woche sparte (und mehr Deals abschloss)\",\n  \"text\": \"Wie ein B2B-Unternehmen mit GPT über 20 Stunden pro Woche sparte (und mehr Deals abschloss)\\n\\nEin mittelständischer Softwareanbieter stand vor einem Problem: Das SDR-Team verbrachte täglich viele Stunden mit der manuellen Qualifizierung von Leads.\\n\\nDie Lösung? Ein individueller GPT-Agent für den Erstkontakt.\\n\\nWas genau tat der Agent?\\n\\n• Führte automatisierte Chats und E-Mails mit neuen Leads\\n• Stellte gezielte Qualifizierungsfragen\\n• Bewertete Leads in Echtzeit anhand von ICP-Daten\\n• Synchronisierte Ergebnisse direkt ins CRM\\n\\nNach nur 30 Tagen:\\n\\n• 90 % weniger manueller Aufwand bei der Lead-Sortierung\\n• 18 % höhere Conversion-Rate bis zum Demo-Termin\\n• Der Vertrieb hatte mehr Zeit fürs Closing\\n\\nFazit: Wenn GPT-Agenten auf deinen spezifischen Prozess trainiert und in deine Systeme integriert sind, sparen sie nicht nur Zeit – sie steigern auch den Umsatz.\\n\\nWürdest du einer KI die Vorqualifizierung deiner Leads anvertrauen? Warum (nicht)?\",\n  \"image\": \"Schwarzer Hintergrund. Illustration eines Funnel-Diagramms: Dutzende kleine, graue Icons (symbolisieren Leads) fließen in einen Trichter mit der Aufschrift 'GPT-Agent'. Auf der Ausgabeseite kommt ein schmalerer Strom leuchtend grüner Icons heraus, beschriftet mit 'Qualifizierte Leads'. Darüber befinden sich ein Uhrensymbol und ein Diagramm-Symbol – sie stehen für Zeitersparnis und bessere Ergebnisse. Modernes, flaches Design mit klaren Formen.\"\n}\n\n#HINWEISE:\nDER HINTERGRUND DES BILDES SOLLTE IMMER SCHWARZ UND DUNKEL GEKÖRNTER FILM SEIN!\nUm Ihre Aufgabe zu erfüllen, kannst du auch die Websuche verwenden."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        640,
+        64
+      ],
+      "id": "96a067d3-7111-4473-9a62-4218a388829a",
+      "name": "Idea Generator",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"name\": \"name\",\n    \"idea\": \"idea\",\n    \"title\": \"title\",\n    \"text\": \"text\",\n    \"image\": \"image\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        848,
+        272
+      ],
+      "id": "5a7822a6-82e3-478c-97d3-55436b6858e3",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1504,
+        144
+      ],
+      "id": "6f4eef16-b03d-40b7-9a0b-cc67cd7b93c1",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all incoming items\nconst items = $input.all();\n\n// Extract the text field from each item\nconst texts = items.map(item => item.json.idea);\n\n// Concatenate them (adjust the separator as needed)\nconst concatenated = texts.join(\", \");\n\n// Return a single item with the concatenated text\nreturn [{ json: { mergedText: concatenated } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        64
+      ],
+      "id": "2bfae0b9-074a-4fe4-bf6f-84c196ea5da7",
+      "name": "Join Ideas"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/edits",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "gpt-image-1"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "prompt",
+              "value": "=You're a professional graphic designer.\n\nMake a new image in the style very very similar to the reference.\n\nCopy the style, spacing, minimalistic structure, especially copy the FONTS, and everything else.\n\nUse black and dark grainy film (mainly for the background), white and salad green (#cff150).\n\nMake the image super aestetic and minimalistic.\n\nMake it vertical 3x4.\n\nIt will be an image for a LinkedIn post.\n\nHere is the description of the new image:\n{{ $('Idea Generator').item.json.output.image }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1312,
+        144
+      ],
+      "id": "21c940ab-c2f2-41d5-b78d-1981c071fc2e",
+      "name": "OpenAI Image",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "20UJvv6oCUUihhKg",
+          "name": "Header Auth account"
+        },
+        "openAiApi": {
+          "id": "STODRm71HyYOPLCv",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "=https://drive.google.com/file/d/1wm4anhC6ygXl4ZJAjJryWfEXTG-VeH8s/view?usp=sharing",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1088,
+        144
+      ],
+      "id": "c427bb33-3d78-419c-af3f-22e024c531b4",
+      "name": "Image Style",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7hsWP4cJwGJioJQF",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1SCnhBQRUYxqSqJwHe8PT64T-Og6rSJ0pXc959-yFNnE",
+          "mode": "list",
+          "cachedResultName": "AI POST",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SCnhBQRUYxqSqJwHe8PT64T-Og6rSJ0pXc959-yFNnE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Tabellenblatt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SCnhBQRUYxqSqJwHe8PT64T-Og6rSJ0pXc959-yFNnE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        288,
+        64
+      ],
+      "id": "5ae1cc87-6fc4-44ec-b522-15f222c9d603",
+      "name": "Get Past Ideas",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1VLz9gmHZIOJXIWM",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Idea Generator').item.json.output.name }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1JqcWsrBy9-8Dl08k0CAaVVkgnrSDbYAK",
+          "mode": "list",
+          "cachedResultName": "AI POST",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1JqcWsrBy9-8Dl08k0CAaVVkgnrSDbYAK"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1728,
+        144
+      ],
+      "id": "77b8192e-6230-43ac-9294-eb4b96742476",
+      "name": "Save Image",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7hsWP4cJwGJioJQF",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1SCnhBQRUYxqSqJwHe8PT64T-Og6rSJ0pXc959-yFNnE",
+          "mode": "list",
+          "cachedResultName": "AI POST",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SCnhBQRUYxqSqJwHe8PT64T-Og6rSJ0pXc959-yFNnE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Tabellenblatt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SCnhBQRUYxqSqJwHe8PT64T-Og6rSJ0pXc959-yFNnE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $('Idea Generator').item.json.output.name }}",
+            "idea": "={{ $('Idea Generator').item.json.output.idea }}",
+            "text": "={{ $('Idea Generator').item.json.output.text }}",
+            "image": "={{ $json.webViewLink.replace(/usp=[^&]+/, 'usp=sharing') }}",
+            "title": "={{ $('Idea Generator').item.json.output.title }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "idea",
+              "displayName": "idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "image",
+              "displayName": "image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1920,
+        144
+      ],
+      "id": "e765452f-9eb7-475d-906c-4447f4acd3a1",
+      "name": "Save Post",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1VLz9gmHZIOJXIWM",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        272
+      ],
+      "id": "d768659d-f5aa-4aa7-8899-0aa3832cf80e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "STODRm71HyYOPLCv",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        64
+      ],
+      "id": "c65abfc3-495a-46a7-8a01-7a37dd82acbb",
+      "name": "When chat message received",
+      "webhookId": "11d21208-25d8-4f86-8abd-37b5326b6c59"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Idea Generator": {
+      "main": [
+        [
+          {
+            "node": "Image Style",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Idea Generator",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Join Ideas": {
+      "main": [
+        [
+          {
+            "node": "Idea Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Save Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Image": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Style": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Past Ideas": {
+      "main": [
+        [
+          {
+            "node": "Join Ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Image": {
+      "main": [
+        [
+          {
+            "node": "Save Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Idea Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Get Past Ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f910d021-092b-4a6d-881d-4154a91274c5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bec8c5cfd29a9d39ababc02e1ffc6edaf3adddc7839c2be8ad7a51ea44d5658f"
+  },
+  "id": "NEPjuukybeQ74wo1",
+  "tags": []
+}
